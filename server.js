@@ -8,6 +8,8 @@ const { StructuredOutputParser } = require("langchain/output_parsers");
 const app = express();
 const port = 3000;
 
+
+app.use(express.static('public'))
 app.use(bodyParser.json());
 
 // Initialize the OpenAI model
