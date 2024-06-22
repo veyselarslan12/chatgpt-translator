@@ -25,7 +25,7 @@ const promptFunc = async (input, targetLanguage) => {
     // With a `StructuredOutputParser` we can define a schema for the output.
     const parser = StructuredOutputParser.fromNamesAndDescriptions({
       // Define the output variables and their descriptions
-      targetLanguage: `The user's word or phrase translated in ${targetLanguage.toLowerCase()}`,
+      translatedText: `The user's word or phrase translated in ${targetLanguage.toLowerCase()}`,
     });
 
     // Get the format instructions from the parser
@@ -47,7 +47,7 @@ const promptFunc = async (input, targetLanguage) => {
     const res = await model.invoke(promptInput);
     const parsedResult = await parser.parse(res);
     console.log(parsedResult);
-    return parsedResult;
+    return parsedResult.translatedText;
     // Catch any errors and log them to the console
   } catch (err) {
     console.log(err);

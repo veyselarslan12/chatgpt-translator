@@ -23,19 +23,19 @@
           <textarea
             class="form-control"
             placeholder="Enter Your Text Here"
-            id="floatingTextarea2"
+            id="userInput"
             style="height: 100px; width: 600px"
           ></textarea>
           <div style="margin-left: 200px; margin-top: 50px;">
-            <p>Enter Language</p>
-            <input type="text" class="form-control" style="height: 30px; width: 200px">
+            <p style="margin-left: 40px">Enter Language</p>
+            <input type="text" id="targetLanguage" class="form-control" style="height: 30px; width: 200px">
           </div>
           <div class="text-center my-2">
-            <button type="button" class="btn btn-warning">Translate</button>
+            <button type="button" id="translateBtn" class="btn btn-warning">Translate</button>
           </div>
         </div>
       </form>
-      <div>
+      <div id="result">
         <!-- translated text will come here -->
       </div>
     </main>
@@ -45,5 +45,6 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
+    <script src="./script.js"></script>
   </body>
 </html>
