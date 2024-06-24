@@ -22,6 +22,7 @@ const model = new OpenAI({
 // Create a prompt function that takes the user input and passes it through the call method
 const promptFunc = async (input, targetLanguage) => {
   try {
+    console.log(input)
     // With a `StructuredOutputParser` we can define a schema for the output.
     const parser = StructuredOutputParser.fromNamesAndDescriptions({
       // Define the output variables and their descriptions
@@ -38,6 +39,7 @@ const promptFunc = async (input, targetLanguage) => {
       inputVariables: ["question"],
       partialVariables: { format_instructions: formatInstructions },
     });
+    
     // Format the prompt with the user input
     const promptInput = await prompt.format({
       question: input,
@@ -45,7 +47,10 @@ const promptFunc = async (input, targetLanguage) => {
     
     // Call the model with the formatted prompt
     const res = await model.invoke(promptInput);
-    const parsedResult = await parser.parse(res);
+    console.log(res)
+    const cleanedUpRes = '{' + res.split("\n{")[1]
+    console.log(cleanedUpRes)
+    const parsedResult = await parser.parse(cleanedUpRes);
     console.log(parsedResult);
     return parsedResult.translatedText;
     // Catch any errors and log them to the console
@@ -60,6 +65,7 @@ app.post("/translate", async (req, res) => {
   try {
     const { text, targetLanguage } = req.body;
     const result = await promptFunc(text, targetLanguage);
+    console.log(result)
     res.json({ result });
   } catch (error) {
     console.error("Error:", error.message);

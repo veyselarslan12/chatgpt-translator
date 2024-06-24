@@ -3,7 +3,8 @@ const targetLanguageInput = document.querySelector('#targetLanguage')
 const translateBtn = document.querySelector('#translateBtn')
 const resultDiv = document.querySelector('#result')
 
-translateBtn.addEventListener('click', async () => {
+translateBtn.addEventListener('click', async (event) => {
+    event.preventDefault()
     const text = textInput.value
     const targetLanguage = targetLanguageInput.value
 
