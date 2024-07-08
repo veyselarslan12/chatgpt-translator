@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 
 // Initialize the OpenAI model
 const model = new OpenAI({
-  temperature: 0,
+  temperature: 0.8,
   openAIApiKey: process.env.OPENAI_API_KEY,
   model_name: "gpt-3.5-turbo",
 });
@@ -26,8 +26,9 @@ const promptFunc = async (input, targetLanguage) => {
     // With a `StructuredOutputParser` we can define a schema for the output.
     const parser = StructuredOutputParser.fromNamesAndDescriptions({
       // Define the output variables and their descriptions
-      translatedText: `The user's word or phrase translated in ${targetLanguage.toLowerCase()}`,
+      translatedText: `The user's turkish word or phrase  translated to ${targetLanguage.toLowerCase()}`,
     });
+    console.log(targetLanguage)
 
     // Get the format instructions from the parser
     const formatInstructions = parser.getFormatInstructions();
